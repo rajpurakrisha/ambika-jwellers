@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ambika Jewellers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&family=Noto+Sans+Gujarati:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+body{
+  margin:0;
+  background:#220808;
+  color:#f3e8d3;
+  font-family:"Poppins",sans-serif;
+}
+
+*{box-sizing:border-box;}
+
+.hero{
+  min-height:88vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease;
+}
+
+.slide.active{opacity:1;}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(0,0,0,.15), transparent 55%),
+    linear-gradient(to bottom, rgba(28,6,6,.92) 0%, rgba(28,6,6,.45) 35%, rgba(28,6,6,.8) 100%);
+}
+
+.content{
+  position:absolute;
+  top:56%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:5;
+  max-width:760px;
+  width:100%;
+  padding:0 18px;
+}
+
+.eyebrow{
+  display:inline-block;
+  margin-bottom:14px;
+  padding:7px 14px;
+  border-radius:999px;
+  border:1px solid rgba(243,233,207,.22);
+  background:rgba(255,255,255,.05);
+  color:#f5e9cf;
+  font-size:12px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.brand{
+  font-family:"Playfair Display",serif;
+  font-size:44px;
+  color:#f5e9cf;
+  letter-spacing:.6px;
+  margin-bottom:8px;
+}
+
+.tagline{
+  opacity:.95;
+  font-size:15px;
+  margin-bottom:26px;
+  letter-spacing:.3px;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.cta,
+.ghost{
+  display:inline-block;
+  padding:14px 30px;
+  border-radius:32px;
+  text-decoration:none;
+  font-weight:600;
+  transition:all .3s ease;
+}
+
+.cta{
+  border:1px solid rgba(212,175,55,.85);
+  color:#1c0606;
+  background:linear-gradient(135deg, #f3e3b2, #d4af37);
+  box-shadow:0 10px 30px rgba(212,175,55,.28);
+}
+
+.ghost{
+  border:1px solid rgba(243,233,207,.45);
+  color:#f5e9cf;
+  background:rgba(255,255,255,.05);
+}
+
+.cta:hover,
+.ghost:hover{
+  transform:translateY(-2px);
+}
+
+.dots{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  z-index:5;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#8a6b5c;
+}
+
+.dot.active{background:#f3e8d3;}
+
+.marquee-wrap{
+  background:#1a0505;
+  overflow:hidden;
+  padding:14px 0;
+  border-top:1px solid rgba(255,215,180,.25);
+  border-bottom:1px solid rgba(255,215,180,.25);
+}
+
+.marquee{
+  display:flex;
+  width:max-content;
+  animation:scroll 28s linear infinite;
+}
+
+.marquee img{
+  height:150px;
+  width:110px;
+  object-fit:cover;
+  margin-right:14px;
+  border-radius:12px;
+  opacity:.92;
+}
+
+.highlights{
+  max-width:980px;
+  margin:34px auto 0;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:14px;
+}
+
+.highlight-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,215,180,.12);
+  border-radius:18px;
+  padding:18px 16px;
+  text-align:left;
+}
+
+.highlight-card strong{
+  display:block;
+  color:#f5e9cf;
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.highlight-card span{
+  display:block;
+  font-size:13px;
+  line-height:1.6;
+  opacity:.9;
+}
+
+@keyframes scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+.info{
+  padding:34px 20px 70px;
+  max-width:980px;
+  margin:auto;
+  text-align:center;
+  scroll-margin-top:24px;
+}
+
+.info h2{
+  font-family:"Playfair Display",serif;
+  margin:0 0 14px;
+  color:#f5e9cf;
+  font-size:38px;
+}
+
+.intro{
+  max-width:760px;
+  margin:0 auto 28px;
+  opacity:.92;
+  line-height:1.8;
+  font-size:14px;
+}
+
+.details{
+  max-width:760px;
+  margin:0 auto 20px;
+  opacity:.92;
+  line-height:1.9;
+  font-size:14px;
+}
+
+.details strong{
+  color:#f5e9cf;
+}
+
+.section-title{
+  font-family:"Playfair Display",serif;
+  font-size:22px;
+  color:#f5e9cf;
+  margin:46px 0 14px;
+}
+
+.info-grid{
+  margin:26px 0 0;
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:16px;
+}
+
+.info-panel{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,215,180,.12);
+  border-radius:18px;
+  padding:18px;
+  text-align:left;
+}
+
+.info-panel h3{
+  margin:0 0 8px;
+  color:#f5e9cf;
+  font-size:16px;
+}
+
+.info-panel p{
+  margin:0;
+  line-height:1.75;
+}
+
+.owners{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:16px;
+  margin:30px 0 24px;
+}
+
+.owner{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,215,180,.12);
+  border-radius:18px;
+  padding:20px;
+}
+
+.owner-name{
+  display:block;
+  margin-bottom:12px;
+  color:#f5e9cf;
+  font-weight:600;
+}
+
+.contact-links{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.contact-link{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:22px;
+  background:rgba(255,255,255,.08);
+  color:#f5e9cf;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.address{
+  margin:0 auto 24px;
+  max-width:720px;
+  line-height:1.8;
+  opacity:.92;
+  font-size:14px;
+}
+
+.map-container{
+  margin:26px auto 0;
+  max-width:720px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.22);
+}
+
+.map-container iframe{
+  width:100%;
+  height:320px;
+  border:0;
+}
+
+.footer{
+  background:#1a0505;
+  padding:20px;
+  text-align:center;
+  border-top:1px solid rgba(255,215,180,.25);
+  font-size:12px;
+  opacity:.86;
+}
+
+.mobile-bar{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:30;
+  display:none;
+  grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(26,5,5,.92);
+  backdrop-filter:blur(16px);
+  border-top:1px solid rgba(255,215,180,.18);
+}
+
+.mobile-bar a{
+  text-align:center;
+  text-decoration:none;
+  color:#220808;
+  background:linear-gradient(135deg, #f3e3b2, #d4af37);
+  border-radius:16px;
+  padding:12px 8px;
+  font-weight:600;
+  font-size:13px;
+}
+
+@media(max-width:768px){
+  .hero{min-height:82vh;}
+  .brand{font-size:32px;}
+  .tagline{font-size:13px; line-height:1.6;}
+  .owners{grid-template-columns:1fr;}
+  .info h2{font-size:30px;}
+  .marquee img{
+    height:120px;
+    width:88px;
+  }
+  .highlights{
+    grid-template-columns:1fr 1fr;
+  }
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+  .mobile-bar{
+    display:grid;
+  }
+  .footer{
+    padding-bottom:84px;
+  }
+}
+
+@media(max-width:480px){
+  .hero{min-height:78vh;}
+  .eyebrow{font-size:11px;}
+  .brand{font-size:28px;}
+  .tagline{font-size:12px;}
+  .cta,
+  .ghost{
+    width:100%;
+    max-width:240px;
+  }
+  .highlights{
+    grid-template-columns:1fr;
+  }
+  .map-container iframe{height:240px;}
+}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="slide active" style="background-image:url('s1.jpg');"></div>
+  <div class="slide" style="background-image:url('s2.jpg');"></div>
+  <div class="slide" style="background-image:url('s3.jpg');"></div>
+  <div class="slide" style="background-image:url('s4.jpg');"></div>
+
+  <div class="content">
+    <div class="brand">Ambika Jewellers</div>
+    <div class="tagline">Elegant jewellery, thoughtful detailing, and trusted craftsmanship for every occasion.</div>
+    <div class="hero-buttons">
+      <a href="collection.html" class="cta">Explore Collection</a>
+    </div>
+  </div>
+
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <img src="gallery/1.jpeg" alt="Gold ring design" />
+    <img src="gallery/2.jpeg" alt="Gold chain design" />
+    <img src="gallery/3.jpeg" alt="Traditional jewellery design" />
+    <img src="gallery/4.jpeg" alt="Jewellery display" />
+    <img src="gallery/5.jpeg" alt="Jewellery display" />
+    <img src="gallery/6.jpeg" alt="Jewellery display" />
+    <img src="gallery/7.jpeg" alt="Jewellery display" />
+    <img src="gallery/8.jpeg" alt="Jewellery display" />
+    <img src="gallery/1.jpeg" alt="Gold ring design" />
+    <img src="gallery/2.jpeg" alt="Gold chain design" />
+    <img src="gallery/3.jpeg" alt="Traditional jewellery design" />
+    <img src="gallery/4.jpeg" alt="Jewellery display" />
+    <img src="gallery/5.jpeg" alt="Jewellery display" />
+    <img src="gallery/6.jpeg" alt="Jewellery display" />
+    <img src="gallery/7.jpeg" alt="Jewellery display" />
+    <img src="gallery/8.jpeg" alt="Jewellery display" />
+  </div>
+</div>
+
+<section class="info">
+  <h2>Ambika Jewellers</h2>
+  <p class="details">
+    <strong>Address:</strong> Pirchalla Street, Opp. Gandhi Delo, Near Meldi Maa Temple, Bhavnagar, Gujarat, India
+  </p>
+
+  <div class="owners">
+    <div class="owner">
+      <span class="owner-name">Bhadresh Shantilal Rajpura</span>
+      <div class="contact-links">
+        <a href="tel:9925513572" class="contact-link">📞 Call</a>
+        <a href="https://wa.me/919925513572" target="_blank" rel="noopener" class="contact-link">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div class="owner">
+      <span class="owner-name">Chandrakant Shantilal Rajpura</span>
+      <div class="contact-links">
+        <a href="tel:8306340023" class="contact-link">📞 Call</a>
+        <a href="https://wa.me/918306340023" target="_blank" rel="noopener" class="contact-link">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-links">
+    <a href="https://instagram.com/ambika_jew" target="_blank" rel="noopener" class="contact-link">📸 Instagram</a>
+    <a href="collection.html" class="contact-link">View Collection</a>
+  </div>
+
+  <p class="address">
+    <strong>Shop Hours:</strong> 10:00 AM to 8:00 PM
+  </p>
+
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps?q=21.777806%2C72.147167&output=embed"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<footer class="footer">
+  &copy; 2026 Ambika Jewellers. All rights reserved.
+</footer>
+
+<div class="mobile-bar">
+  <a href="tel:9925513572">Call</a>
+  <a href="https://wa.me/919925513572" target="_blank" rel="noopener">WhatsApp</a>
+  <a href="collection.html">Collection</a>
+</div>
+
+<script>
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+let currentSlide = 0;
+
+setInterval(() => {
+  slides[currentSlide].classList.remove("active");
+  dots[currentSlide].classList.remove("active");
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add("active");
+  dots[currentSlide].classList.add("active");
+}, 4500);
+</script>
+</body>
+</html>
